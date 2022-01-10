@@ -7,42 +7,43 @@ function App() {
   const [brand, setBrand] = useState("Apple");
   const [modelArr, setModelArr] = useState([]);
   const [seriesArr, setSeriesArr] = useState("");
-
+  // const brand = ()=> useState("Apple");
   //  console.log(brand)
 
-  const UpdateModel = () => {
-    const models = laptops.getModel(`${brand}`);
-    const mapModel = models.map((model, i) => (
-      <option key={i} value={model}>
-        {model}
-      </option>
-    ));
-    setModelArr(mapModel);
-  };
-  const UpdateBrand = () => {
-    const brands = laptops.getBrand("all");
-    const mapBrand = brands.models.map((brand, i) => (
-      <option key={i} value={brand}>
-        {brand}
-      </option>
-    ));
-    setBrandArr(mapBrand);
-  };
-  const UpdateSeries = () => {
-    const series = laptops.getSeries(`${brand}`);
-
-    const mapSeries = series.map((serial, i) => (
-      <option key={i} value={serial}>
-        {serial}
-      </option>
-    ));
-    setSeriesArr(mapSeries);
-  };
   useEffect(() => {
+    const UpdateSeries = () => {
+      const series = laptops.getSeries(`${brand}`);
+
+      const mapSeries = series.map((serial, i) => (
+        <option key={i} value={serial}>
+          {serial}
+        </option>
+      ));
+      setSeriesArr(mapSeries);
+    };
+    const UpdateModel = () => {
+      const models = laptops.getModel(`${brand}`);
+      const mapModel = models.map((model, i) => (
+        <option key={i} value={model}>
+          {model}
+        </option>
+      ));
+      setModelArr(mapModel);
+    };
+    const UpdateBrand = () => {
+      const brands = laptops.getBrand("all");
+      const mapBrand = brands.models.map((brand, i) => (
+        <option key={i} value={brand}>
+          {brand}
+        </option>
+      ));
+      setBrandArr(mapBrand);
+      setBrand("Apple");
+    };
     UpdateBrand();
     UpdateModel();
     UpdateSeries();
-  }, []);
+  }, [brand]);
   const handleChange = (e) => {
     e.preventDefault();
     const { value, name } = e.target;
