@@ -49,7 +49,6 @@ function App() {
     const { value, name } = e.target;
     if (name === "selectModel") {
       const models = laptops.getModel(`${value}`);
-      // console.log(models)
       const mapModel = models.map((model, i) => (
         <option key={i} value={model}>
           {model}
@@ -57,7 +56,6 @@ function App() {
       ));
       setModelArr(mapModel);
       const series = laptops.getSeries(`${value}`);
-      console.log(series);
       const mapSeries = series.map((serial, i) => (
         <option key={i} value={serial}>
           {serial}
